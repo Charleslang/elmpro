@@ -1,28 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- 排除详情页面不刷新的 bug -->
+    <keep-alive exclude="EditAddress">
+      <router-view/>
+    </keep-alive>
+    <bottom-tab-bar/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import BottomTabBar from 'components/tabbar/BottomTabBar'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    name: 'App',
+    components: {
+      BottomTabBar
+    }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import 'assets/css/reset.css';
+  @import 'assets/css/icon.css';
+  @import 'assets/css/font-awesome/css/font-awesome.min.css';
 </style>
