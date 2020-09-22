@@ -71,6 +71,7 @@
   import {register} from 'api/djf/register'
 
   export default {
+    name: 'Register',
     components: {
       RegisterTopBar
     },
@@ -154,9 +155,15 @@
       registerUser(user) {
         if (this.validate(user)) {
           register(user).then(res => {
-            console.log(res)
+            if (res.code === 200) {
+              console.log(res.data)
+              this.$store.commit('changeToken', res.data)
+              this.$router.push('/profile')
+            } else {
+              alert(res.message)
+            }
           }, err => {
-            console.log(err)
+            console.log(err.message)
           })
         }
       }

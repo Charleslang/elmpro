@@ -7,14 +7,14 @@ export function request(config) {
   })
 
   // 拦截请求
-  axios.interceptors.request.use(success => {
+  axios.interceptors.request.use(config => {
     let token = localStorage.getItem('token')
     console.log('request.js ->' + token)
     if (token != null && token != '') {
       // 请求头添加 token
-      config.headers.token = token
+      config.headers['token'] = token
     }
-    return success
+    return config
   }, err => {
     console.error(err)
   })

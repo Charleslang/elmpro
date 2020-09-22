@@ -18,7 +18,7 @@ export function login(username, password) {
 export function testToken() {
   return request({
     url: '/user/test',
-    method: 'get',
+    method: 'post',
     headers: {}
   })
 }

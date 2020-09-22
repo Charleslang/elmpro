@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 排除详情页面不刷新的 bug -->
-    <keep-alive exclude="EditAddress">
+    <keep-alive exclude="EditAddress,Login,Register">
       <router-view/>
     </keep-alive>
     <bottom-tab-bar/>

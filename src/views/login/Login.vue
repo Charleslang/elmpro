@@ -28,7 +28,7 @@
       <button @click="userLogin(username, password)">登陆</button>
     </div>
     <div class="button-register">
-      <button @click="goTestToken">去注册</button>
+      <button @click="goRegister">去注册</button>
     </div>
   </div>
 </template>
@@ -39,6 +39,7 @@
   import {login, testToken} from 'api/djf/login'
 
   export default {
+    name: 'Login',
     components: {
       LoginTopBar
     },
@@ -69,11 +70,15 @@
           login(username, password.trim()).then(res => {
             if (res.code === 200) {
               this.$store.commit('changeToken', res.data)
-              this.$router.push('/home')
-              alert('登录成功')
+              console.log('login ->' + this.$store.state.token)
+              this.$router.go(-1)
+              // this.$router.push('/home')
+              // alert('登录成功')
             } else {
               alert(res.message)
             }
+          }, err => {
+            alert(err.message)
           })
         }
       },
@@ -85,6 +90,9 @@
           console.log(err)
           this.$router.push('/login')
         })
+      },
+      goRegister() {
+        this.$router.push('/register')
       },
       change(e) {
         let val = e.target.value.trim()
